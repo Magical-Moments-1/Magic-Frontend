@@ -1,0 +1,22 @@
+<div class="searchbar">
+  <input class="search_input" type="text" placeholder="Search..." #searchInput>
+  <div class="search_icon searchButton"><i class="fas fa-search"></i></div>
+</div>
+  @for(question of filteredQuestions;track question.id){
+    <div class="question-block">
+      <h3 class="question-text">{{ question.question.hebrew }}</h3>
+      <h3 class="question-text">{{ question.question.english }}</h3>
+    </div>
+    <div class="answer-block">
+      <p class="answer-text">{{ question.answer.hebrew }}</p>
+      <p class="answer-text">{{ question.answer.english }}</p>
+    </div>
+    <div class="meta-block">
+      <p class="rating-text">Rating: {{ question.rating }}</p>
+      <p class="date-text">Created At: {{ question.createAt ? (question.createAt) : 'N/A' }}</p>
+
+    </div>
+    }
+
+  
+    

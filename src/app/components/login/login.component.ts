@@ -1,6 +1,10 @@
-import { Component, OnInit } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
-declare var google: any;
+import { Component } from '@angular/core';
+import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { UsersService } from '../../Services/Users/users.service';
+import { Router } from '@angular/router';
+import { Users } from '../../Models/Users';
+import { LoginService } from '../../Services/Login/login.service';
+import { LoginModel } from '../../Models/LoginModel';
 
 @Component({
   selector: 'app-login',
@@ -35,3 +39,5 @@ export class LoginComponent {
         alert(err);
       }
     })
+  }
+}

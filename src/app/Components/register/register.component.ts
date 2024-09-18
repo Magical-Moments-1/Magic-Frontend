@@ -3,24 +3,25 @@ import { UsersService } from '../../Services/Users/users.service';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Users } from '../../Models/Users';
 import { Router } from '@angular/router';
+import { MatFormFieldModule } from '@angular/material/form-field';
 
 @Component({
   selector: 'app-register',
   standalone: true,
-  imports: [ReactiveFormsModule],
+  imports: [ReactiveFormsModule,MatFormFieldModule],
   templateUrl: './register.component.html',
   styleUrl: './register.component.css'
 })
 export class RegisterComponent {
   public registerForm!: FormGroup
+  public errorMessage = "This field is required";
   constructor(private _userService: UsersService,private router: Router) { }
   ngOnInit(): void {
     this.registerForm = new FormGroup({
-      "name": new FormControl("", [Validators.required, Validators.minLength(3)]),
-      // "address": new FormControl("", [Validators.required]),
-      "email": new FormControl("", [Validators.required, Validators.pattern('[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}')]),
-      "passwordHash": new FormControl("",[Validators.required]),
-      "phone": new FormControl("",[Validators.required]),
+      "name": new FormControl("", [Validators.required,Validators.pattern('^[A-Za-zא-ת]+$')]),
+      "email": new FormControl("", [Validators.required, Validators.pattern('^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$')]),
+      "passwordHash": new FormControl("", [Validators.required,Validators.pattern('^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[@$!%*?&])[A-Za-z\\d@$!%*?&]{8,}$')]),
+      "phone": new FormControl("", [Validators.required, Validators.pattern('^[0-9]{1,4}[-s]?[0-9]{1,4}[-s]?[0-9]{1,9}$')]),
     })
   }
   register() {
@@ -45,7 +46,7 @@ export class RegisterComponent {
         sessionStorage.setItem('username', name);
         sessionStorage.setItem('password', passwordHash);
         alert("registration completed")
-        this.router.navigate(['/login'])
+        this.router.navigate([''])
       },
       error: (err) => {
         console.log(err);

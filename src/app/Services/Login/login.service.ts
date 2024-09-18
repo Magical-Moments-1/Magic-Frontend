@@ -6,11 +6,16 @@ import { HttpClient } from '@angular/common/http';
   providedIn: 'root'
 })
 export class LoginService {
+  URL:string="https://localhost:7154/api/Auth";
 
   constructor(private _http: HttpClient) { }
+
+  // login(user: LoginModel) {
+  //   console.log(user);
+  //   return this._http.post(this.URL, user)
+  // }
+
   login(user: LoginModel) {
-    console.log(user);
-    return this._http.post('https://localhost:7154/api/Auth', user)
-    
+    return this._http.post<any>(this.URL, user)
   }
 }

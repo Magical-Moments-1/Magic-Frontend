@@ -5,56 +5,33 @@ declare var google: any;
 @Component({
   selector: 'app-login',
   standalone: true,
-  imports: [],
+  imports: [ReactiveFormsModule],
   templateUrl: './login.component.html',
   styleUrl: './login.component.css'
 })
-export class LoginComponent implements OnInit{
+export class LoginComponent {
+  constructor(private _loginService: LoginService, private router: Router) { }
 
-  user: any = null;  // נשמור כאן את פרטי המשתמש
-  defaultProfileImage = 'https://lh3.googleusercontent.com/a/default-user=s80-p-k-rw-no'; // תמונת אנונימי
-
-  // constructor(private http: HttpClient) { }
+  public addForm!: FormGroup;
+   public user!: LoginModel 
 
   ngOnInit(): void {
-    // יצירת תצורה של Google Sign-In
-    google.accounts.id.initialize({
-      client_id: '577889101296-a6ijqo02rmo518m9uasgv2hql9lric4e.apps.googleusercontent.com',
-      callback: this.handleCredentialResponse.bind(this),
-    });
-
-    // הצגת כפתור הכניסה
-    google.accounts.id.renderButton(
-      console.log("kdkf"),
-
-      document.getElementById("buttonDiv"),
-      { theme: "outline", size: "medium" }  // תצורה של הכפתור
-    );
+    this.addForm = new FormGroup({
+      "name": new FormControl("",[Validators.required, Validators.minLength(9)]),
+      "email": new FormControl("",[Validators.required]),
+    })
   }
-
-  // פונקציה שתופעל בעת קבלת תוקף (token)
-
-
- 
-  handleCredentialResponse(response: any) {
-    const token = response.credential;
-    console.log("Encoded JWT ID token: " + token);
-    
-  //   // שולחים את ה-token לשרת
-  //   this.http.post('https://localhost:7154/', { token: token })
-  //     .subscribe(
-  //       (res: any) => {
-  //         console.log('User authenticated successfully:', res);
-  //         // שומרים את פרטי המשתמש
-  //         this.user = res;
-  //       },
-  //       (error) => {
-  //         console.error('Authentication failed:', error);
-  //       }
-  //     );
-  }
-  getProfileImage(): string {
-    // אם יש תמונה של המשתמש, נציג אותה; אחרת נציג את תמונת ברירת המחדל
-    return this.user && this.user.picture ? this.user.picture : this.defaultProfileImage;
-  }
-}
+  submit() {
+    let newUser: LoginModel = {
+      userName: this.addForm.value.name,
+      email: this.addForm.value.email,
+    }
+    this._loginService.login(newUser).subscribe({
+      next: (res) => {
+        console.log(document.cookie);
+        this.router.navigate(['/question'])
+      },
+      error: (err) => {
+        alert(err);
+      }
+    })

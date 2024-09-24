@@ -28,15 +28,12 @@ export class ForgotPasswordComponent {
       }
       this._userService.sentLink(email).subscribe({
         next: (response) => {
-          alert(response);
+                console.log(`Sending password reset link to ${email}`);
         },
         error: (err) => {
           console.error('Login error:', err);
-          alert('Login failed. Please check your credentials and try again.');
         }
       });
-      // Call your service to send the reset link to the email
-      console.log(`Sending password reset link to ${email}`);
     }
   }
 }

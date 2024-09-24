@@ -4,6 +4,9 @@ import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angula
 import { Users } from '../../Models/Users';
 import { Router } from '@angular/router';
 import { MatFormFieldModule } from '@angular/material/form-field';
+import { LoginService } from '../../Services/Login/login.service';
+import { CookieManagerService } from '../../Services/Cookie/cookie-manager.service';
+import { LoginModel } from '../../Models/LoginModel';
 
 @Component({
   selector: 'app-register',
@@ -15,11 +18,15 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 export class RegisterComponent {
   public registerForm!: FormGroup
   public errorMessage = "This field is required";
-  constructor(private _userService: UsersService,private router: Router) { }
+  constructor(private _userService: UsersService,
+    private router: Router,
+    private _loginService: LoginService,
+    private cookieService: CookieManagerService
+  ) { }
   ngOnInit(): void {
     this.registerForm = new FormGroup({
       "name": new FormControl("", [Validators.required,Validators.pattern('^[A-Za-zא-ת]+$')]),
-      "email": new FormControl("", [Validators.required, Validators.pattern('^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$')]),
+      "email": new FormControl("", [Validators.required, Validators.pattern('^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$'),Validators.email ]),
       "passwordHash": new FormControl("", [Validators.required,Validators.pattern('^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[@$!%*?&])[A-Za-z\\d@$!%*?&]{8,}$')]),
       "phone": new FormControl("", [Validators.required, Validators.pattern('^[0-9]{1,4}[-s]?[0-9]{1,4}[-s]?[0-9]{1,9}$')]),
     })
@@ -46,11 +53,29 @@ export class RegisterComponent {
         sessionStorage.setItem('username', name);
         sessionStorage.setItem('password', passwordHash);
         alert("registration completed")
-        this.router.navigate([''])
+        this.autoLogin(newUser.email, newUser.passwordHash);
       },
       error: (err) => {
         console.log(err);
       }
     })
+  }
+  autoLogin(email: string, password: string) {
+    let loginUser: LoginModel = { email: email, password: password };
+    this._loginService.login(loginUser).subscribe({
+      next: (response) => {
+        const token = response.accessToken;
+        const refreshToken = response.refreshToken;
+        if (token && refreshToken) {
+          this.cookieService.setCookie('AccessToken', token, 30); 
+          this.cookieService.setCookie('RefreshToken', refreshToken, 30); 
+          this.router.navigate(['/question']); 
+        }
+      },
+      error: (err) => {
+        console.error('Auto login error:', err);
+        alert('Login failed. Please check your credentials and try again.');
+      }
+    });
   }
 }

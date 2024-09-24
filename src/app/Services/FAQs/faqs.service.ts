@@ -1,7 +1,8 @@
 import { Injectable } from '@angular/core';
 import { FAQs } from '../../Models/FAQs';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { CookieManagerService } from '../Cookie/cookie-manager.service';
 
 @Injectable({
   providedIn: 'root'
@@ -9,10 +10,14 @@ import { Observable } from 'rxjs';
 export class FaqsService {
   public question!: FAQs
   URL: string = "https://localhost:7154/api/FAQs"
-  constructor(private _http: HttpClient) { }
+  constructor(private _http: HttpClient,private cookieService: CookieManagerService) { }
 
   getQuestionList(): Observable<FAQs[]> {
-    return this._http.get<FAQs[]>(this.URL)
+    const AccessToken = this.cookieService.getCookie('AccessToken');
+    return this._http.get<FAQs[]>(this.URL, { headers: new HttpHeaders({
+      'Authorization': `Bearer ${AccessToken}`
+    })
+  })
   }
 
   // getRecipeById(id: number): Observable<FAQs> {

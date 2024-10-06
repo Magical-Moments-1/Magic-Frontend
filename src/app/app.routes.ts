@@ -1,14 +1,17 @@
 import { Routes } from '@angular/router';
 import { authGuard } from './Guard/auth.guard';
-
-
+import { ResetPasswordComponent } from './Components/reset-password/reset-password.component';
+import { LogoutComponent } from './Components/logout/logout.component';
+import { ForgotPasswordComponent } from './Components/forgot-password/forgot-password.component';
+import { RegisterComponent } from './Components/register/register.component';
+import { FAQsComponent } from './Components/faqs/faqs.component';
+import { LoginComponent } from './Components/login/login.component';
 
 export const routes: Routes = [
-    { path: '', loadComponent: () => import('./Components/login/login.component').then(l=>l.LoginComponent)},
-    { path: 'question', loadComponent: () => import('./Components/faqs/faqs.component').then(q=>q.FAQsComponent),canActivate: [authGuard] },
-    { path: 'register', loadComponent: () => import('./Components/register/register.component').then(r=>r.RegisterComponent)},
-    { path: 'forgot-password', loadComponent: () => import('./Components/forgot-password/forgot-password.component').then(f=>f.ForgotPasswordComponent)},
-    { path: 'logout', loadComponent: () => import('./Components/logout/logout.component').then(l=>l.LogoutComponent),canActivate: [authGuard]},
-
-
+    { path: '',component:LoginComponent},
+    { path: 'question', component:FAQsComponent,canActivate: [authGuard] },
+    { path: 'register',  component:RegisterComponent},
+    { path: 'forgot-password', component:ForgotPasswordComponent},
+    { path: 'logout',component:LogoutComponent,canActivate: [authGuard]},
+    { path: 'forgot-password/reset-password', component: ResetPasswordComponent }
 ];

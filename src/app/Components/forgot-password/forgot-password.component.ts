@@ -2,41 +2,41 @@ import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms';
 import { UsersService } from '../../Services/Users/users.service';
-import { EmailVerificationPostModel } from '../../Models/EmailVerificationPostModel';
+import { ForgotPassword } from '../../Models/ForgotPassword';
+import { MatFormFieldModule } from '@angular/material/form-field';
 @Component({
   selector: 'app-forgot-password',
   standalone: true,
-  imports: [ReactiveFormsModule],
+  imports: [ReactiveFormsModule,MatFormFieldModule],
   templateUrl: './forgot-password.component.html',
   styleUrl: './forgot-password.component.css'
 })
 export class ForgotPasswordComponent {
-  resetPasswordForm!: FormGroup;
-
+  forgotPasswordForm!: FormGroup;
+  public errorMessage = "This field is required";
   constructor(private _userService: UsersService,private fb: FormBuilder) { }
 
   ngOnInit(): void {
-    this.resetPasswordForm = this.fb.group({
-      email: ['', [Validators.required, Validators.email]]
+    this.forgotPasswordForm = this.fb.group({
+      email: ['', [Validators.required, Validators.email,Validators.pattern('^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$')]]
     });
   }
 
-  resetPassword(): void {
-    if (this.resetPasswordForm.valid) {
-      let email: EmailVerificationPostModel = {
-         email :this.resetPasswordForm.value.email
+  forgotPassword(): void {
+    if (this.forgotPasswordForm.valid) {
+      let forgotPass: ForgotPassword = {
+        email: this.forgotPasswordForm.value.email,
+        clientURI: 'http://localhost:4200/forgot-password/reset-password'
       }
-      this._userService.sentLink(email).subscribe({
+      this._userService.forgotPassword(forgotPass).subscribe({
         next: (response) => {
-          alert(response);
+          alert("נשלח לך סיסמה למייל");
         },
         error: (err) => {
           console.error('Login error:', err);
-          alert('Login failed. Please check your credentials and try again.');
         }
       });
-      // Call your service to send the reset link to the email
-      console.log(`Sending password reset link to ${email}`);
     }
   }
 }
+

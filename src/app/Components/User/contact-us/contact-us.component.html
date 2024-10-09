@@ -27,12 +27,6 @@
             }
         </div>
     </div>
-    <!-- to do add files SOS ASAP -->
-    <div>
-        <label for="attachments">Attachments</label>
-        <input id="attachments" type="file" (change)="onFileSelected($event)" multiple />
-    </div>
-
     <div class="form-group">
         <input [disabled]="!messageForm.valid" (click)="onSubmit()" type="submit" value="Send">
     </div>

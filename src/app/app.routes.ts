@@ -1,14 +1,15 @@
 import { Routes } from '@angular/router';
-import { authGuard } from './Guard/auth.guard';
-
-
+import { LoginComponent } from './Components/login/login.component';
+import { GoogleLoginComponent } from './Components/google-login/google-login.component';
+import { ContactUsComponent } from './Components/User/contact-us/contact-us.component';
 
 export const routes: Routes = [
-    { path: '', loadComponent: () => import('./Components/login/login.component').then(l=>l.LoginComponent)},
-    { path: 'question', loadComponent: () => import('./Components/faqs/faqs.component').then(q=>q.FAQsComponent),canActivate: [authGuard] },
+    { path: 'login', component: LoginComponent },
+    { path: 'con', component: GoogleLoginComponent },
+    { path: 'contactUs', component: ContactUsComponent},
+
+    { path: 'question', loadComponent: () => import('./Components/faqs/faqs.component').then(q=>q.FAQsComponent)},
     { path: 'register', loadComponent: () => import('./Components/register/register.component').then(r=>r.RegisterComponent)},
-    { path: 'forgot-password', loadComponent: () => import('./Components/forgot-password/forgot-password.component').then(f=>f.ForgotPasswordComponent)},
-    { path: 'logout', loadComponent: () => import('./Components/logout/logout.component').then(l=>l.LogoutComponent),canActivate: [authGuard]},
-
-
+    { path: '', loadComponent: () => import('./Components/login/login.component').then(l=>l.LoginComponent)},
+    { path: 'contact-us', loadComponent: () => import('./Components/User/contact-us/contact-us.component').then(c=>c.ContactUsComponent)}
 ];

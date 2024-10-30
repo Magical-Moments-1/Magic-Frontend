@@ -7,26 +7,26 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class UsersService {
-  public users!:Users
+  URL:string="https://localhost:7154/api/Users"
 
   constructor(private _http: HttpClient) { }
 
   
   getUsersList(): Observable<Users[]> {
-    return this._http.get<Users[]>('https://localhost:7154/api/Users')
+    return this._http.get<Users[]>(this.URL)
   }
 
   getUserById(id: string): Observable<Users> {
-    return this._http.get<Users>(`https://localhost:7154/api/Users${id}`)
+    return this._http.get<Users>(this.URL + '/' + id)
   }
  
   addUser(user: Users) {
-    return this._http.post('https://localhost:7154/api/Users', user)
+    return this._http.post(this.URL, user)
     
   }
 
   updateUser(user: Users)
   {
-    return this._http.put('https://localhost:7154/api/Users', user)
+    return this._http.put(this.URL, user)
   }
 }

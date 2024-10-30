@@ -1,15 +1,17 @@
 import { Routes } from '@angular/router';
+import { authGuard } from './Guard/auth.guard';
+import { ResetPasswordComponent } from './Components/reset-password/reset-password.component';
+import { LogoutComponent } from './Components/logout/logout.component';
+import { ForgotPasswordComponent } from './Components/forgot-password/forgot-password.component';
+import { RegisterComponent } from './Components/register/register.component';
+import { FAQsComponent } from './Components/faqs/faqs.component';
 import { LoginComponent } from './Components/login/login.component';
-import { GoogleLoginComponent } from './Components/google-login/google-login.component';
-import { ContactUsComponent } from './Components/User/contact-us/contact-us.component';
 
 export const routes: Routes = [
-    { path: 'login', component: LoginComponent },
-    { path: 'con', component: GoogleLoginComponent },
-    { path: 'contactUs', component: ContactUsComponent},
-
-    { path: 'question', loadComponent: () => import('./Components/faqs/faqs.component').then(q=>q.FAQsComponent)},
-    { path: 'register', loadComponent: () => import('./Components/register/register.component').then(r=>r.RegisterComponent)},
-    { path: '', loadComponent: () => import('./Components/login/login.component').then(l=>l.LoginComponent)},
-    { path: 'contact-us', loadComponent: () => import('./Components/User/contact-us/contact-us.component').then(c=>c.ContactUsComponent)}
+    { path: '',component:LoginComponent},
+    { path: 'question', component:FAQsComponent,canActivate: [authGuard] },
+    { path: 'register',  component:RegisterComponent},
+    { path: 'forgot-password', component:ForgotPasswordComponent},
+    { path: 'logout',component:LogoutComponent,canActivate: [authGuard]},
+    { path: 'forgot-password/reset-password', component: ResetPasswordComponent }
 ];

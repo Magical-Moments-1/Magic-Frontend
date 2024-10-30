@@ -3,7 +3,6 @@ import { LoginModel } from '../../Models/LoginModel';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { CookieManagerService } from '../Cookie/cookie-manager.service';
 import { AuthenticatedResponse } from '../../Models/AuthenticatedResponse';
-import { TokenApiModel } from '../../Models/TokenApiModel';
 
 @Injectable({
   providedIn: 'root'

@@ -2,7 +2,8 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Users } from '../../Models/Users';
 import { Observable } from 'rxjs';
-import { EmailVerificationPostModel } from '../../Models/EmailVerificationPostModel';
+import { ForgotPassword } from '../../Models/ForgotPassword';
+import { ResetPassword } from '../../Models/ResetPassword';
 
 @Injectable({
   providedIn: 'root'
@@ -25,10 +26,14 @@ export class UsersService {
     return this._http.post(this.URL, user)
 
   }
-  sentLink(email: EmailVerificationPostModel) {
-    return this._http.post('https://localhost:7154/api/Users/Send-link', email)
-  }
   updateUser(user: Users) {
     return this._http.put(this.URL, user)
+  }
+ 
+   forgotPassword ( body: ForgotPassword)  {
+    return this._http.post(this.URL + '/send-link', body);
+  }
+   resetPassword  (body: ResetPassword) {
+    return this._http.post(this.URL + '/reset-password', body);
   }
 }

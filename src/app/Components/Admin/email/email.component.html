@@ -1,0 +1,79 @@
+<div>
+    <button (click)="loadEmailsForManager()">Show Emails to Manager not complete</button>
+    @if(emailsNotCompletes.length > 0){
+    <div>
+        <h2>Email List TODO!</h2>
+        <ul>
+            @for (email of emailsNotCompletes; track email) {
+            <li>
+                <p><strong>From:</strong> {{ email.fromEmail }}</p>
+                <p><strong>To:</strong> {{ email.toEmail }}</p>
+                <p><strong>Subject:</strong> {{ email.subject }}</p>
+                <p><strong>Message:</strong> {{ email.messageContent }}</p>
+                <p><strong>Status:</strong> {{ email.status }}</p>
+                <p><strong>Date:</strong> {{ email.createdAt }}</p>      
+                <button (click)="selectEmail(email)">Reply</button>
+            </li>
+            }
+        </ul>
+        @if (flag){
+        <form [formGroup]="this.replyMessageForm">
+            <div>
+                <label for="subject">Subject</label>
+                <input id="subject" formControlName="subject" type="subject" />
+                <div>
+                    @if(!replyMessageForm.controls['subject'].valid){
+                    Subject is required.
+                    }
+                </div>
+            </div>
+            <div>
+                <label for="message">Message</label>
+                <input id="message" formControlName="message" type="message" autocomplete="off" />
+                <div>
+                    @if(!replyMessageForm.controls['message'].valid){
+                    Message is required.
+                    }
+                </div>
+            </div>
+            <div class="form-group">
+                <input [disabled]="!replyMessageForm.valid" (click)="replyToEmail()" type="submit" value="Send">
+            </div>
+        </form>
+        }
+
+    </div>
+    }
+    @else{
+    <p>Email list TODO is empty! (you have to laod the page before!)</p>
+    }
+    @if(emailsCompletes.length > 0){
+    <div>
+        <h2>Email List Completed!</h2>
+        <ul>
+            @for (email of emailsCompletes; track email) {
+            <li>
+                <p><strong>Name:</strong> {{ email.name }}</p>
+                <p><strong>To:</strong> {{ email.toEmail }}</p>
+                <p><strong>Subject:</strong> {{ email.subject }}</p>
+                <p><strong>Message:</strong> {{ email.messageContent }}</p>
+                <p><strong>Status:</strong> {{ email.status }}</p>
+                <p><strong>Date:</strong> {{ email.createdAt }}</p>
+                <button (click)="getEmailFromManger(email)">Check the reply</button>
+            </li>
+            }
+            @if(flag2){
+            <div>
+                <p>The message that reply to this request is:</p>
+                <p><strong>To:</strong> {{ this.selectedEmail.toEmail }}</p>
+                <p><strong>Subject:</strong> {{ selectedEmail.subject }}</p>
+                <p><strong>Message:</strong> {{ selectedEmail.messageContent }}</p>
+                <p><strong>Status:</strong> {{ selectedEmail.status }}</p>
+                <p><strong>Date:</strong> {{ selectedEmail.createdAt }}</p>
+                <button (click)="close()">Close</button>
+            </div>
+            }
+        </ul>
+    </div>
+    }
+</div>

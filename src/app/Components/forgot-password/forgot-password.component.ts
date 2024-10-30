@@ -31,6 +31,8 @@ export class ForgotPasswordComponent {
       this._userService.forgotPassword(forgotPass).subscribe({
         next: (response) => {
           alert("נשלח לך סיסמה למייל");
+                console.log(`Sending password reset link to ${email}`);
+
         },
         error: (err) => {
           console.error('Login error:', err);

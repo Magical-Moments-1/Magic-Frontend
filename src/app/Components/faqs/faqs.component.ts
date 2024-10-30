@@ -4,6 +4,7 @@ import { FaqsService } from '../../Services/FAQs/faqs.service';
 import { FAQs } from '../../Models/FAQs';
 import { debounceTime, map, startWith } from 'rxjs/operators';
 import { fromEvent } from 'rxjs';
+
 @Component({
   selector: 'app-faqs',
   standalone: true,

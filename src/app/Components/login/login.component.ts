@@ -6,11 +6,12 @@ import { Users } from '../../Models/Users';
 import { LoginService } from '../../Services/Login/login.service';
 import { LoginModel } from '../../Models/LoginModel';
 import { CookieManagerService } from '../../Services/Cookie/cookie-manager.service';
+import { ForgotPasswordComponent } from '../forgot-password/forgot-password.component';
 
 @Component({
   selector: 'app-login',
   standalone: true,
-  imports: [ReactiveFormsModule],
+  imports: [ReactiveFormsModule,ForgotPasswordComponent],
   templateUrl: './login.component.html',
   styleUrl: './login.component.css'
 })
@@ -33,7 +34,8 @@ export class LoginComponent {
     }
     this._loginService.login(newUser).subscribe({
       next: (response) => {
-        console.log(response);
+        const token = response.accessToken;
+        const refreshToken = response.refreshToken;
         if (response && response.accessToken && response.refreshToken) {
           this.cookieService.setCookie('AccessToken', response.accessToken, 30); // 30 days
           this.cookieService.setCookie('RefreshToken', response.refreshToken, 30); // 30 days
@@ -46,4 +48,5 @@ export class LoginComponent {
       }
     });
   }
+  
 }

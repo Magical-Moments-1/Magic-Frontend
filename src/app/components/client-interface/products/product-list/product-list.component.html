@@ -1,0 +1,19 @@
+<div>Category Name</div>
+<div>
+    $  <input type="radio" placeholder="$" value="USD" [(ngModel)]="this.currency">
+    ₪ <input type="radio" placeholder="₪" value="NIS" [(ngModel)]="this.currency">
+    <input type="text" [(ngModel)]="searchTerm" placeholder="Search...">
+    <br>
+    <!-- <p>The url of this page - {{urlPage}}</p> -->
+    <p>--------THis is the list product---------</p>
+        @for (item of products | filterSearch: searchTerm; track item.id ) {
+<app-product-in-list [product]="item" ></app-product-in-list>
+    }
+</div>
+<div>
+    <p>------Filter-----</p>
+    <app-filter-products [products]="this.allProducts" (filterProducts)="filterProduct($event)"></app-filter-products>
+</div>
+<div>
+    <p>------long page-----</p>
+</div>

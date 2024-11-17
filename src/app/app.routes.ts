@@ -1,17 +1,23 @@
 import { Routes } from '@angular/router';
-import { authGuard } from './Guard/auth.guard';
-import { ResetPasswordComponent } from './Components/reset-password/reset-password.component';
-import { LogoutComponent } from './Components/logout/logout.component';
-import { ForgotPasswordComponent } from './Components/forgot-password/forgot-password.component';
-import { RegisterComponent } from './Components/register/register.component';
-import { FAQsComponent } from './Components/faqs/faqs.component';
-import { LoginComponent } from './Components/login/login.component';
+import { LoginComponent } from './components/client-interface/user/login/login.component';
+import { RegisterComponent } from './components/client-interface/user/register/register.component';
+import { PasswordResetLinkComponent } from './components/client-interface/user/password-reset-link/password-reset-link.component';
+import { PasswordResetComponent } from './components/client-interface/user/password-reset/password-reset.component';
+import { ProductComponent } from './components/client-interface/products/product/product.component';
+import { ProductListComponent } from './components/client-interface/products/product-list/product-list.component';
+import { HomeComponent } from './components/client-interface/layout/home/home.component';
+
 
 export const routes: Routes = [
-    { path: '',component:LoginComponent},
-    { path: 'question', component:FAQsComponent,canActivate: [authGuard] },
+    { path: '',component:HomeComponent},
+    { path: 'login',component:LoginComponent},
     { path: 'register',  component:RegisterComponent},
-    { path: 'forgot-password', component:ForgotPasswordComponent},
-    { path: 'logout',component:LogoutComponent,canActivate: [authGuard]},
-    { path: 'forgot-password/reset-password', component: ResetPasswordComponent }
+    { path: 'password-reset', component:PasswordResetLinkComponent},
+    { path: "password-reset/:token", component: PasswordResetComponent },
+    // { path: 'logout',component:LogoutComponent,canActivate: [authGuard]},
+
+    { path: "product/:id", component: ProductComponent },
+    { path: "products/:catId", component: ProductListComponent }
+
+
 ];

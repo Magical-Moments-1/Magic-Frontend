@@ -1,0 +1,20 @@
+<p>product-in-list</p>
+<li>{{product.imageUrl}}</li>
+<li>{{ product.name?.he }}</li>
+@if(product.inSale){
+<li><s>{{product.price | currency: 'USD'}} </s>  {{product.salePrice?.nis}}</li>
+}
+@else { <li>{{product.price?.nis}}</li>}
+<div>
+    @if(product.inSale){
+    <p>In sale</p>
+    }
+    @if (!product.specialDelivery) {
+        <p>משלוח לכל הארץ</p>
+    }
+    @for (qtys of product.quantity; track $index || qtys.qty && qtys.qty < 0) {
+        <p>אזל מהמלאי</p>
+    <!-- To do - > check qty -->
+    }
+</div>
+<button type="button" (click)="productClick()">More details</button>

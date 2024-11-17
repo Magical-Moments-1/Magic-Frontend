@@ -1,0 +1,56 @@
+<h2>Register</h2>
+<form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+  <input type="text" formControlName="name">
+  <div>
+    @if(registerForm.controls['name'].invalid && registerForm.controls['name'].touched){
+    @if(registerForm.controls['name'].hasError('required'))
+    {
+    <p>Name is required</p>
+    }
+    @if(registerForm.controls['name'].hasError('pattern'))
+    {
+    <p>Invalid name format</p>
+    }
+    }
+  </div>
+
+  <input id="email" formControlName="email" type="email" />
+  <div>
+    @if(registerForm.controls['email'].invalid && registerForm.controls['email'].touched){
+    @if(registerForm.controls['email'].hasError('required')){
+    <p>Email is required</p>
+    }
+    @if(registerForm.controls['email'].hasError('pattern')){
+    <p>Email must be a valid email address.</p>
+    }
+    }
+  </div>
+  <input id="passwordHash" formControlName="passwordHash" type="password" />
+  <div>
+    @if(registerForm.controls['passwordHash'].invalid && registerForm.controls['passwordHash'].touched){
+    @if(registerForm.controls['passwordHash'].hasError('required')){
+    <p>required</p>
+    }
+    @if(registerForm.controls['passwordHash'].hasError('pattern')){
+    <p> הסיסמה חייבת להיות לפחות 8 תווים, לכלול אות גדולה, אות קטנה, מספר ותו מיוחד.</p>
+    }
+    }
+  </div>
+
+  <input id="phone" formControlName="phone" type="tel" />
+  <div>
+    @if(registerForm.controls['phone'].invalid && registerForm.controls['phone'].touched){
+      @if(registerForm.controls['phone'].hasError('required')){
+<p>required</p>  
+    }
+    @if(registerForm.controls['phone'].hasError('pattern')){
+      <mat-error>
+      Phone number must be in the format XXX-XXX-XXXX.
+      </mat-error>
+
+    }
+    }
+  </div>
+
+  <button type="submit" [disabled]="registerForm.invalid">Submit</button>
+</form>

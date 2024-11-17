@@ -1,0 +1,14 @@
+<div>
+    <a routerLink="/">Home</a>
+    <a routerLink="/login">Login</a>
+    <a routerLink="/product">All Gifts</a>
+    <div>
+        @for (cat of this._categoryService.topCategories; track $index) {
+            <b>cat.name.he</b>
+            @for (item of cat.childCategories; track $index) {
+                <p>item.value.he</p>
+            }
+        }
+    </div>
+    
+</div>

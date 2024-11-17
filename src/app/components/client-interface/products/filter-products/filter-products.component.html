@@ -1,0 +1,9 @@
+<p>filter-products</p>
+<form [formGroup]="filterForm" (ngSubmit)="handleFilter()"> 
+by Embroidery: <input type="checkbox" id="embroidery" formControlName="embroidery">
+by Caption <input type="checkbox" id="caption" formControlName="caption">
+coutryride shipping <input type="checkbox" id="shipping" formControlName="shipping">
+On sale <input type="checkbox" id="sale"  formControlName="sale">
+by price: min price<input type="number" formControlName="minPrice">   max price<input type="number" formControlName="maxPrice"> 
+<button>Filter</button>
+</form>

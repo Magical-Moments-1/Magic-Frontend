@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
-import { Message } from '../../Models/Message';
+import { Message } from '../../models/message.model';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { Status } from '../../Models/Status';
+import { Status } from '../../models/Status';
 
 @Injectable({
   providedIn: 'root'
@@ -13,7 +13,7 @@ export class MessageService {
   public messageListt: Message[] = []
   public messageListToMangaerSEND: Message[] = []
   public messageListToUserCOMPLETE: Message[] = []
-  private newMessage: Message = new Message()
+  private newMessage: Message = {}
   get NewMessage(): Message {
     return this.newMessage
   }

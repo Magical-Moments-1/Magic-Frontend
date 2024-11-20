@@ -1,0 +1,7 @@
+<ng-container *transloco="let t">
+    <label for="lang">choose_language </label>
+    <select (change)="onChange($event)" id="lang">
+            <option [value]='"en"' [selected]="'en' === currentLang">English</option>
+            <option [value]='"he"' [selected]="'he' === currentLang">עברית</option>
+    </select>
+  </ng-container>

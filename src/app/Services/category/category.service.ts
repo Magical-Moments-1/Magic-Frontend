@@ -26,8 +26,16 @@ export class CategoryService {
     updateCategory(category: Category) {
       return this._http.put(`${this.URL}/${category.id}`, category)
     }
-    getTopCategories() {
-      return this._http.get(`${this.URL}/top`)
+    getTopCategories(){
+      this._http.get<Category[]>(`${this.URL}/top`).subscribe({
+        next: (data) => {
+          this.topCategories = data;
+        },
+        error: (err) => {
+          console.error('Error:', err);
+        }
+      })
     }
+
   }
   

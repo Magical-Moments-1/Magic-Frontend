@@ -1,7 +1,9 @@
+import { Text } from "./text.model";
+
 export class Category {
     id!: string;
     name!: Text;
-    childCategories!: Array<Dictionary>;
+    childCategoriesList!: Array<Dictionary>;
     status!: string;
     //productsInCategory!: string[];
     imageUrl!: string;
@@ -10,6 +12,6 @@ export class Category {
 }
 
 export class Dictionary {
-    key!: string;
-    value!: Text;
+    id!: string;
+    name!: Text;
 }

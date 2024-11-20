@@ -15,6 +15,8 @@ export class ProductInListComponent {
 currency:string = "USD";
 constructor(private router: Router){}
 productClick =()=>{
-this.router.navigateByUrl(`/product/${this.product.id}`)   
+this.router.navigateByUrl(`/product/${this.product.id}`) 
+// this.router.navigate(['/product'], { state:{ id: this.product.id  }});
+
 }
 }

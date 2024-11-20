@@ -1,6 +1,7 @@
 import { Component, Input, output } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { Product } from '../../../../models/product.model';
+import { ProductService } from '../../../../services/product/product.service';
 
 @Component({
   selector: 'app-filter-products',
@@ -13,7 +14,11 @@ export class FilterProductsComponent {
   ngOnChanges(): void {
    this.handleFilter() 
   }
-  @Input() products: Product[] = [];
+  ngOnInit(): void {
+    this.products = this._productService.productList;
+  }
+  constructor(private _productService: ProductService){}
+ products: Product[] = [];
   filterProducts  = output<any>()  
   filterForm: FormGroup = new FormGroup({
     embroidery: new FormControl(false),

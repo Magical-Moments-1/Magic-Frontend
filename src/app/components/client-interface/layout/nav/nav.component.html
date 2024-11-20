@@ -1,14 +1,17 @@
+<main *transloco="let t , read: 'navComponent'">
 <div>
-    <a routerLink="/">Home</a>
-    <a routerLink="/login">Login</a>
-    <a routerLink="/product">All Gifts</a>
+    <app-language-switcher></app-language-switcher>
+    <a routerLink="/">{{t('home')}} </a>
+    <a routerLink="/login">{{t('login')}}  </a>
+    <a routerLink="/product">{{t('all Gifts')}}  </a>
+
     <div>
         @for (cat of this._categoryService.topCategories; track $index) {
-            <b>cat.name.he</b>
-            @for (item of cat.childCategories; track $index) {
-                <p>item.value.he</p>
+            <a [routerLink]="['/products']" [state]="{ id: cat.id , name:cat.name.he}"><b>{{cat.name.he}}</b></a>
+            @for (item of cat.childCategoriesList; track $index) {
+                <a [routerLink]="['/products',item.name.en]" [state]="{ id: item.id , name:item.name.he, top:{id:cat.id, name:cat.name.he}}"><p>{{item.name.he}}</p></a>               
             }
         }
-    </div>
-    
+    </div>   
 </div>
+</main>

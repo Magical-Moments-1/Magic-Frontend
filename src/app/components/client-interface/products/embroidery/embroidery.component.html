@@ -1,0 +1,22 @@
+<form>
+    <textarea  rows="8" cols="50" placeholder="הכנס כיתוב"></textarea>
+    <br>
+    <select formControlName="selectedOption">
+      @for (fonts of _embroidery.embroideryList[0]?.font;  track $index){
+            <option [value]="fonts?.type">{{fonts?.type}}</option> 
+      }
+      </select>
+      <br>
+      <button   (click)="icon($event)">הוסף איקון</button>
+            <div [hidden]="!isIcon">
+                  <!-- @for (icons of _embroidery.embroideryList[0]?.icon;  track $index){ -->
+                        <img src="public/pic/1.jpg" style="width: 100px; height: auto;" />
+                  <!-- } -->
+                  
+            </div>
+
+</form>
+<!-- <p fontFamily="Arial">{{_embroidery.embroidery[0]?.font[0]}}</p> -->
+<p fontFamily="Aharoni">אאאא</p>
+<p style="font-family:Guttman Yad-Brush
+ ;">אאאאThis is a paragraph with a specific font family.</p>

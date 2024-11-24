@@ -6,6 +6,8 @@ import { PasswordResetComponent } from './components/client-interface/user/passw
 import { ProductComponent } from './components/client-interface/products/product/product.component';
 import { ProductListComponent } from './components/client-interface/products/product-list/product-list.component';
 import { HomeComponent } from './components/client-interface/layout/home/home.component';
+import { CaptionComponent } from './components/client-interface/products/caption/caption.component';
+import { EmbroideryComponent } from './components/client-interface/products/embroidery/embroidery.component';
 
 
 export const routes: Routes = [
@@ -17,7 +19,8 @@ export const routes: Routes = [
     // { path: 'logout',component:LogoutComponent,canActivate: [authGuard]},
 
     { path: "product/:id", component: ProductComponent },
-    { path: "products/:catId", component: ProductListComponent }
-
+    { path: "products/:catId", component: ProductListComponent },
+    { path: "caption", component: CaptionComponent},
+    {path: "embroidery",component:EmbroideryComponent}
 
 ];

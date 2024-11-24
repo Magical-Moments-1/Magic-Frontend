@@ -13,7 +13,7 @@ import { EmbroideryComponent } from './components/client-interface/products/embr
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })
+
 export class AppComponent {
   title = 'Magic-Frontend';
-  
 }

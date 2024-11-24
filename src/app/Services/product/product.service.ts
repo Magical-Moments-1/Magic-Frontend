@@ -27,7 +27,9 @@ public currency:string = "NIS";
   updateProduct(product: Product) {
     return this._http.put(`${this.URL}/${product.id}`, product)
   }
-  getProductsByCatId(id: string) {
-    return this._http.get(`${this.URL}/category/${id}`)
+  getProductsByCatId(id: string) : Observable<Product []> {
+    return this._http.get<Product[]>(`${this.URL}/category/${id}`)
   }
 }
+
+

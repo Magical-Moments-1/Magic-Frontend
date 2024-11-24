@@ -1,0 +1,9 @@
+{
+    "a":"hello world",
+    "navComponent":
+    {
+        "home":"Home",
+        "login":"Login",
+        "all Gifts":"All Gifts"
+    }
+}

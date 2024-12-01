@@ -3,4 +3,12 @@
     <p>name: {{product.name?.en}}></p>
     <p>Price: {{product.price?.dollar}}</p>
     <p>image : {{product.imageUrl}}</p>
+
+    @if(product.embroidery){
+        <a routerLink="/embroidery" >embroidery</a>
+    }
+    @if(product.caption){
+        <a routerLink="/caption">caption</a>
+    }
+    
 </div>

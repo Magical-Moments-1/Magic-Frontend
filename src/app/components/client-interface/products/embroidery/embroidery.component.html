@@ -1,0 +1,52 @@
+<form [formGroup]="embroideryForm" (ngSubmit)="handleSave()">
+      <input formControlName="text" placeholder="הכנס כיתוב" type="text" (input)="calc()">
+
+      <br>
+      <select formControlName="font">
+            @for (fonts of _embroidery.embroideryList[0]?.font; track $index){
+            <option [value]="fonts?.type">{{fonts?.type}}</option>
+            }
+      </select>
+
+      <br>
+      <button (click)="icon($event)">הוסף איקון</button>
+      <div [hidden]="!isIcon" [style.border]="'1px solid black'">
+            @for (icons of _embroidery.embroideryList[0]?.icon; track $index){
+            <button style="border: none;" (click)="iconimg(icons?.id)">
+                  <img [src]="icons.id" style="width: 100px; height: auto;" />
+            </button>
+            }
+      </div>
+
+      <br>
+      <label>מיקום</label>
+      <label>
+            <input formControlName="place" type="radio" [value]="'r'">רגיל
+      </label>
+      <label>
+            <input formControlName="place" type="radio" [value]="'d'">אחר
+      </label>
+      @if(embroideryForm.value.place==="d"){
+      <input type="text" formControlName="dplace" placeholder="מיקום">
+      }
+
+      <br>
+      <label>גודל גופן</label>
+      <select formControlName="size" (change)="calc()">
+            @for (size of _embroidery.embroideryList[0]?.size; track $index){
+            <option [value]="$index">cm: {{size?.cm}} inch: {{size?.inch}}</option>
+            }
+      </select>
+
+      <br>
+      <label>צבע</label>
+      @for (colors of _embroidery.embroideryList[0]?.color; track $index){
+      <input type="button" [style.backgroundColor]="colors.id" (click)="color(colors?.id)">
+      }
+      
+      <button type="submit" [disabled]="embroideryForm.invalid || embroideryForm.value.color==1">לסיום</button>
+
+</form>
+<p>the price is: {{this.embroideryForm.value.price}}</p>
+<p [style.color]="embroideryForm.value.color" [style.font-family]="embroideryForm.value.font">
+      {{embroideryForm.value.text}}</p>

@@ -14,7 +14,6 @@ embroideryList:Embroidery[]=[];
 constructor(private _http: HttpClient) { }
 
 getEmbroideryList(): Observable<Embroidery[]> {
-  debugger
   return this._http.get<Embroidery[]>(this.URL)
 }
 

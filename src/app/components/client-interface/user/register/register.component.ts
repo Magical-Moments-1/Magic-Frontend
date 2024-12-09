@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { MatFormFieldModule } from '@angular/material/form-field';
-import { UserService } from '../../../../services/user/user.service';
+import { UserService } from '../../../../‏‏services/user/user.service';
 
 @Component({
   selector: 'app-register',

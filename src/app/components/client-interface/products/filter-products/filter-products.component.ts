@@ -1,7 +1,7 @@
 import { Component, Input, output } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { Product } from '../../../../models/product.model';
-import { ProductService } from '../../../../services/product/product.service';
+import { ProductService } from '../../../../‏‏services/product/product.service';
 
 @Component({
   selector: 'app-filter-products',

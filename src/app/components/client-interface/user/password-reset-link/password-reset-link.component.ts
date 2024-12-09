@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { UserService } from '../../../../services/user/user.service';
-import { MessageService } from '../../../../services/message/message.service';
 import { Message } from '../../../../models/message.model';
+import { UserService } from '../../../../‏‏services/user/user.service';
+import { MessageService } from '../../../../‏‏services/message/message.service';
 
 @Component({
   selector: 'app-password-reset-link',

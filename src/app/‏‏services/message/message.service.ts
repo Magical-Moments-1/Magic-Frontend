@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { Message } from '../../models/message.model';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { Status } from '../../models/Status';
+// import { Status } from '../../models/Status';
 
 @Injectable({
   providedIn: 'root'
@@ -26,7 +26,7 @@ export class MessageService {
     return this._http.post<any>(`${this._url}/send`, sendEmail)
   }
 
-  updateStatus(emailId: string, status: Status): Observable<any> {
+  updateStatus(emailId: string, status: any): Observable<any> {
     debugger
     return this._http.put(`${this._url}/status/${emailId}`, status);
   }

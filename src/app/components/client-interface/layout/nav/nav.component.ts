@@ -1,8 +1,9 @@
 import { Component } from '@angular/core';
 import { Router, RouterLink } from '@angular/router';
-import { CategoryService } from '../../../../services/category/category.service';
+
 import { LanguageSwitcherComponent } from "../language-switcher/language-switcher.component";
 import { TranslocoDirective } from '@jsverse/transloco';
+import { CategoryService } from '../../../../‏‏services/category/category.service';
 
 @Component({
   selector: 'app-nav',

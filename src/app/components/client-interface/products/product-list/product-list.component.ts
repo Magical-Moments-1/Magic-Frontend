@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ProductService } from '../../../../services/product/product.service';
+import { ProductService } from '../../../../‏‏services/product/product.service';
 import { Product } from '../../../../models/product.model';
 import { ProductInListComponent } from "../product-in-list/product-in-list.component";
 import { FilterProductsComponent } from "../filter-products/filter-products.component";
@@ -9,7 +9,7 @@ import { ActivatedRoute, NavigationEnd, NavigationStart, Router } from '@angular
 import { state } from '@angular/animations';
 import { filter } from 'rxjs';
 import { Category } from '../../../../models/category.model';
-import { CategoryService } from '../../../../services/category/category.service';
+import { CategoryService } from '../../../../‏‏services/category/category.service';
 
 @Component({
   selector: 'app-product-list',

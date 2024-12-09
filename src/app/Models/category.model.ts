@@ -2,6 +2,7 @@ import { Text } from "./text.model";
 
 export class Category {
     id!: string;
+    sku!: string;
     name!: Text;
     childCategoriesList!: Array<Dictionary>;
     status!: string;

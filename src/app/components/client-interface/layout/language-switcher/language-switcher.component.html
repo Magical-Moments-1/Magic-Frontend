@@ -1,7 +1,8 @@
-<ng-container *transloco="let t">
-    <label for="lang">choose_language </label>
-    <select (change)="onChange($event)" id="lang">
-            <option [value]='"en"' [selected]="'en' === currentLang">English</option>
-            <option [value]='"he"' [selected]="'he' === currentLang">עברית</option>
-    </select>
-  </ng-container>
+  <div class="group1">
+        <div class="rectangle946"></div>
+        <div [class] = 'this.class'></div>
+        
+        <div  (click)="onChange('he')"  [style.color] = "getHeColor()" class="label hebrew">עברית</div>
+        <div  (click)="onChange('en')" [style.color] = "getEnColor()" class="label english">English</div>
+    </div>
+    

@@ -1,0 +1,52 @@
+.group1 {
+    width: 138.44px;
+    height: 31.15px;
+    position: absolute;
+    left:100px;
+    top: 100px;
+    cursor: pointer;
+
+}
+
+.rectangle946 {
+    width: 138.44px;
+    height: 31.15px;
+    position: absolute;
+    background: #9E581C;
+    border-radius: 23.36px;
+    z-index: -1; 
+}
+
+.switcher-he {
+    width:  69.22px;
+    height:31.15px ;
+    background: #FFFAF5;
+    border-top-right-radius: 23.36px;
+    border-bottom-right-radius: 23.36px;
+}
+
+.switcher-en {
+    width:  69.22px;
+    height:31.15px ;
+    background: #FFFAF5;
+    border-top-left-radius: 23.36px;
+    border-bottom-left-radius: 23.36px;
+}
+
+.label {
+    position: absolute;
+    font-size: 14px;
+    font-family: Inter, sans-serif; /* הוסף גופן חלופי */
+    font-weight: 400;
+    word-wrap: break-word;
+}
+
+.hebrew {
+    left: 21.15px;
+    top: 7.07px;
+}
+
+.english {
+    left: 82px;
+    top: 7px;
+}

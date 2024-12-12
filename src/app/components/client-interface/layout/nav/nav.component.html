@@ -1,17 +1,126 @@
 <main *transloco="let t , read: 'navComponent'">
-<div>
-    <app-language-switcher></app-language-switcher>
-    <a routerLink="/">{{t('home')}} </a>
-    <a routerLink="/login">{{t('login')}}  </a>
-    <a routerLink="/product">{{t('all Gifts')}}  </a>
 
-    <div>
-        @for (cat of this._categoryService.topCategories; track $index) {
-            <a [routerLink]="['/products']" [state]="{ id: cat.id , name:cat.name.he}"><b>{{cat.name.he}}</b></a>
-            @for (item of cat.childCategoriesList; track $index) {
-                <a [routerLink]="['/products',item.name.en]" [state]="{ id: item.id , name:item.name.he, top:{id:cat.id, name:cat.name.he}}"><p>{{item.name.he}}</p></a>               
+    <div class="top-nav">
+
+        <div class="back-main-nav"></div>
+
+        <img class="logo" src="assets\icons\logo.svg" />
+        <app-language-switcher class="lang-switcher" />
+
+        <div class="main-nav">
+            <div class="text"> <a routerLink="/" class="text">{{t('home')}}</a></div>
+            <div class="dropdown"> <a class="text" routerLink="/login" class="text">{{t('gifts')}}</a>
+                    <div class="dropdown-content">
+                        @for (cat of this._categoryService.topCategories; track $index) {
+                            <a class="text2" [routerLink]="['/products']"
+                            [state]="{ id: cat.id , name:cat.name.he}">{{cat.name[t('lang')]}}</a>
+                            @for (item of cat.childCategoriesList; track $index) {                               
+                                <a [routerLink]="['/products',replace(item.name.en)]"
+                                [state]="{ id: item.id , name:item.name.he, top:{id:cat.id, name:cat.name.he}}">
+                                {{item.name[t('lang')]}}
+                            </a>                            }
+                        }
+                    </div>
+                  </div>
+
+            <div class="text"> <a routerLink="/login" class="text">{{t('about')}}</a></div>
+            <div class="text"> <a routerLink="/login" class="text">{{t('faq')}}</a></div>
+            <div class="text"> <a routerLink="/login" class="text">{{t('gallery')}}</a></div>
+            <div class="text"> <a routerLink="/login" class="text">{{t('contact')}}</a></div>
+
+        </div>
+
+        <div id="icons" class="icons">
+
+            <a routerLink="/register"> <svg class="icon-shopping-cart" width="33" height="32" viewBox="0 0 33 32"
+                    fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <g id="vuesax/linear/shopping-cart">
+                        <g id="shopping-cart">
+                            <path id="Vector"
+                                d="M3.16666 2.66666H5.48666C6.92666 2.66666 8.05999 3.90666 7.93999 5.33332L6.83332 18.6133C6.64666 20.7866 8.36665 22.6533 10.5533 22.6533H24.7533C26.6733 22.6533 28.3533 21.08 28.5 19.1733L29.22 9.17333C29.38 6.96 27.7 5.15998 25.4733 5.15998H8.26"
+                                stroke="#9E581C" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round"
+                                stroke-linejoin="round" />
+                            <path id="Vector_2"
+                                d="M22.1667 29.3333C23.0871 29.3333 23.8333 28.5871 23.8333 27.6667C23.8333 26.7462 23.0871 26 22.1667 26C21.2462 26 20.5 26.7462 20.5 27.6667C20.5 28.5871 21.2462 29.3333 22.1667 29.3333Z"
+                                stroke="#9E581C" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round"
+                                stroke-linejoin="round" />
+                            <path id="Vector_3"
+                                d="M11.5 29.3333C12.4205 29.3333 13.1667 28.5871 13.1667 27.6667C13.1667 26.7462 12.4205 26 11.5 26C10.5795 26 9.83334 26.7462 9.83334 27.6667C9.83334 28.5871 10.5795 29.3333 11.5 29.3333Z"
+                                stroke="#9E581C" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round"
+                                stroke-linejoin="round" />
+                            <path id="Vector_4" d="M12.5 10.6667H28.5" stroke="#9E581C" stroke-width="1.5"
+                                stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round" />
+                        </g>
+                    </g>
+                </svg></a>
+            <a routerLink="/register"> <svg class="icon-heart" width="32" height="32" viewBox="0 0 32 32" fill="none"
+                    xmlns="http://www.w3.org/2000/svg">
+                    <g id="vuesax/linear/heart">
+                        <g id="heart">
+                            <path id="Vector"
+                                d="M16.8267 27.7467C16.3733 27.9067 15.6267 27.9067 15.1733 27.7467C11.3067 26.4267 2.66666 20.92 2.66666 11.5867C2.66666 7.46666 5.98666 4.13333 10.08 4.13333C12.5067 4.13333 14.6533 5.30666 16 7.12C17.3467 5.30666 19.5067 4.13333 21.92 4.13333C26.0133 4.13333 29.3333 7.46666 29.3333 11.5867C29.3333 20.92 20.6933 26.4267 16.8267 27.7467Z"
+                                stroke="#9E581C" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                        </g>
+                    </g>
+                </svg></a>
+            <!-- <p class="text3" >כניסה</p> -->
+            <!-- <b class="text3">לחשבון שלי</b> -->
+            <a routerLink="/register"> <svg class="profile-circle" width="32" height="32" viewBox="0 0 32 32"
+                    fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <g id="vuesax/bulk/profile-circle">
+                        <g id="profile-circle">
+                            <path id="Vector" opacity="0.15"
+                                d="M16 29.3467C23.3638 29.3467 29.3334 23.3771 29.3334 16.0133C29.3334 8.64953 23.3638 2.67999 16 2.67999C8.63622 2.67999 2.66669 8.64953 2.66669 16.0133C2.66669 23.3771 8.63622 29.3467 16 29.3467Z"
+                                fill="#9E581C" />
+                            <path id="Vector_2"
+                                d="M16 9.25333C13.24 9.25333 11 11.4933 11 14.2533C11 16.96 13.12 19.16 15.9333 19.24C15.9733 19.24 16.0267 19.24 16.0533 19.24C16.08 19.24 16.12 19.24 16.1467 19.24C16.16 19.24 16.1733 19.24 16.1733 19.24C18.8667 19.1467 20.9867 16.96 21 14.2533C21 11.4933 18.76 9.25333 16 9.25333Z"
+                                fill="#9E581C" />
+                            <path id="Vector_3"
+                                d="M25.04 25.8133C22.6667 28 19.4934 29.3467 16 29.3467C12.5067 29.3467 9.33336 28 6.96002 25.8133C7.28002 24.6 8.14669 23.4933 9.41336 22.64C13.0534 20.2133 18.9734 20.2133 22.5867 22.64C23.8667 23.4933 24.72 24.6 25.04 25.8133Z"
+                                fill="#9E581C" />
+                        </g>
+                    </g>
+                </svg></a>
+
+
+        </div>
+        <div class="sub-nav">
+            <div class="back-sub-nav"></div>
+            <div class="nav-items">
+                    @for (cat of this._categoryService.topCategories; track $index) {
+                    <div class="text-container">
+                    <div class="dropdown">
+                            <p class="text2" [routerLink]="['/products']"
+                                [state]="{ id: cat.id , name:cat.name.he}">{{cat.name[t('lang')]}}</p>
+
+                        <div class="dropdown-content">
+                            @for (item of cat.childCategoriesList; track $index) {
+                            <a [routerLink]="['/products',replace(item.name.en)]"
+                                [state]="{ id: item.id , name:item.name.he, top:{id:cat.id, name:cat.name.he}}">
+                                {{item.name[t('lang')]}}
+                            </a>
+                            }
+                        </div>
+
+
+                    </div>
+                    <div class="arrow-down">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
+                            xmlns="http://www.w3.org/2000/svg">
+                            <g id="vuesax/bold/arrow-down">
+                                <g id="arrow-down">
+                                    <path id="Vector"
+                                        d="M17.92 8.17999H11.69H6.07999C5.11999 8.17999 4.63999 9.33999 5.31999 10.02L10.5 15.2C11.33 16.03 12.68 16.03 13.51 15.2L15.48 13.23L18.69 10.02C19.36 9.33999 18.88 8.17999 17.92 8.17999Z"
+                                        fill="white" />
+                                </g>
+                            </g>
+                        </svg></div>
+                  
+                </div>
             }
-        }
-    </div>   
-</div>
+            </div>
+        </div>
+
+    </div>
+
 </main>

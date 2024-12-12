@@ -2,8 +2,12 @@
     "a":"hello world",
     "navComponent":
     {
+        "lang":"en",
         "home":"Home",
-        "login":"Login",
-        "all Gifts":"All Gifts"
+        "gifts":"All Gifts",
+        "faq":"FAQ",
+        "about":"About",
+        "gallery":"Gallery",
+        "contact": "Contact Us"
     }
 }

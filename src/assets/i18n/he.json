@@ -3,8 +3,12 @@
 
     "navComponent":
     {
+        "lang":"he",
         "home":"בית",
-        "login":"התחבר",
-        "all Gifts":"כל המתנות"
+        "gifts":"כל המתנות",
+        "faq":"שאלות נפוצות",
+        "about":"אודות",
+        "gallery":"גלריה",
+        "contact": "צור קשר"
     }
 }

@@ -20,4 +20,7 @@ ngOnInit(): void{
     this._categoryService.getTopCategories();
   }
 }
+replace(name:any):string{
+  return name.replace(/ /g, "-")
+  }
 }

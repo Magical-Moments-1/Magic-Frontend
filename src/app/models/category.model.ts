@@ -3,7 +3,7 @@ import { Text } from "./text.model";
 export class Category {
     id!: string;
     sku!: string;
-    name!: Text;
+    name!: any;
     childCategoriesList!: Array<Dictionary>;
     status!: string;
     //productsInCategory!: string[];
@@ -14,5 +14,5 @@ export class Category {
 
 export class Dictionary {
     id!: string;
-    name!: Text;
+    name!: any;
 }
